@@ -38,7 +38,7 @@ public class OrganizationController {
 	@GetMapping("/{id}")
 	public Organization findById(@PathVariable("id") String id) {
 		LOGGER.info("Organization find: id={}", id);
-		return repository.findById(id).get();
+		return repository.findById(id).orElse(null);
 	}
 
 	@GetMapping("/{id}/with-departments")
