@@ -57,6 +57,14 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
 	</dependencies>
 
 	<repositories>
@@ -99,6 +107,22 @@
 					<layers>
 						<enabled>true</enabled>
 					</layers>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.0</version>
+				<configuration>
+					<from>
+						<image>eclipse-temurin:11-alpine</image>
+					</from>
+					<to>
+						<image>vmware/employee:1.1</image>
+					</to>
+					<container>
+						<format>OCI</format>
+					</container>
 				</configuration>
 			</plugin>
 		</plugins>
