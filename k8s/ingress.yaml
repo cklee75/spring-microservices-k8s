@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: gateway-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   defaultBackend:
     service:
@@ -14,28 +14,28 @@ spec:
   - host: microservices-cluster.info
     http:
       paths:
-      - path: /employee
+      - path: /employee(.*)
         backend:
           service:
             name: employee
             port:
               number: 8080
         pathType: Prefix
-      - path: /department
+      - path: /department(.*)
         backend:
           service:
             name: department
             port:
               number: 8080      
         pathType: Prefix
-      - path: /organization
+      - path: /organization(.*)
         backend:
            service:
             name: organization
             port:
               number: 8080
         pathType: Prefix
-      - path: /gateway
+      - path: /gateway(.*)
         backend:
           service:
             name: gateway
