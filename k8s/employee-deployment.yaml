@@ -31,17 +31,17 @@ spec:
               port: 8080
               path: /actuator/health
             initialDelaySeconds: 60
-            timeoutSeconds: 10
+            timeoutSeconds: 2
             periodSeconds: 20
-            failureThreshold: 10
+            failureThreshold: 5
           livenessProbe:
             httpGet:
               port: 8080
               path: /actuator/info
             initialDelaySeconds: 60
-            timeoutSeconds: 10
+            timeoutSeconds: 2
             periodSeconds: 20
-            failureThreshold: 10
+            failureThreshold: 5
           volumeMounts:
             - name: mongodb
               mountPath: /etc/secretspot
