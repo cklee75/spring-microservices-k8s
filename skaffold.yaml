@@ -1,0 +1,37 @@
+apiVersion: skaffold/v4beta5
+kind: Config
+metadata:
+  name: sample-spring-microservices-kubernetes
+build:
+  artifacts:
+    - image: vmware/department
+      jib:
+        project: department-service
+        args:
+          - -DskipTests
+    - image: vmware/employee
+      jib:
+        project: employee-service
+        args:
+          - -DskipTests
+    - image: vmware/gateway
+      jib:
+        project: gateway-service
+    - image: vmware/organization
+      jib:
+        project: organization-service
+        args:
+          - -DskipTests
+  tagPolicy:
+    gitCommit: {}
+manifests:
+  rawYaml:
+    - k8s/mongodb-*.yaml
+    - k8s/ingress.yaml
+    - k8s/rbac-cluster-role.yaml
+    - k8s/department-*.yaml
+    - k8s/employee-*.yaml
+    - k8s/gateway-*.yaml
+    - k8s/organization-*.yaml
+deploy:
+  kubectl: {}
